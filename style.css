@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #55c1ffa8;
+}
+
+ul{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    width: 90vw;
+    background-color: #b1e6ff;
+    border-radius: 10px;
+    flex-wrap: wrap;
+
+}
+
+li{
+    margin: 30px 30px;
+    height: 40px;
+    width: 90px;
+    background-color: #f0f0f09d;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
