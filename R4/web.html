@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Survey</title>
+</head>
+<body>
+    <h1>Survey Page</h1>
+    <div class="container">
+        <form actio="">
+            <div class="input_labels"><input type="text" placeholder="Username"></div>
+            <div class="input_labels"><input type="email" placeholder="Email"></div>
+            <div class="input_labels"><input type="password" placeholder="Password"></div>
+            <div class="input_labels"><input type="number" placeholder="Phoneno"></div>
+            <div class="input_labels"><input type="text" placeholder="Address"></div>
+            <div class="gender">
+                <label for="gender">Gender:</label>
+                <input type="radio" name="gender" value="male" placeholder="Male"> Male
+                <input type="radio" name="gender" value="female" placeholder="Female"> Female
+            </div>
+            
+            <div class="input_labels city">
+                <label for="place">Place:</label>
+                <select id="place" name="place">
+                    <option value="city1">Ernakulam</option>
+                    <option value="city2">Thiruvananthapuram</option>
+                    <option value="city3">Kochi</option>
+                </select>
+            </div>
+            <div class="input_labels lang">
+                <label for="language">Language:</label>
+                <div class="input_labels"><input type="checkbox" name="Language" value="yes"> malayalam</div>
+                <div class="input_labels"><input type="checkbox" name="Language" value="yes"> english</div>
+                <div class="input_labels"><input type="checkbox" name="Language" value="yes"> hindi</div>
+            </div>
+
+            <div class="input_labels"><input type="date"></div>
+            <div class="input_labels file"><input type="file"></div>
+        </form>
+        <div><button>Submit</button></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+*{
+    font-family: monospace;
+    background-color: paleturquoise;
+}
+h1{
+    color: blue2;
+    text-align: center;
+}
+
+div{
+    background-color: bisque;
+    height: 40vh;
+    width: 40vw;
+    border: 10px solid #000000;
+}
+
+p{
+    font-size: 30px;
+    font-weight: bolder;
+    margin-left: 1rem;
+}
+
+.first{
+    color: red;
+}
+
+.second{
+    color: blue;
+}
+
+.third{
+    color: green;
+}
