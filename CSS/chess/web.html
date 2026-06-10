@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-  
-        *{
+        * {
             padding: 0px;
-            margin:0px;
+            margin: 0px;
         }
-        
-        body{
+
+        body {
             background-color: rgb(104, 104, 104);
             display: flex;
             justify-content: center;
@@ -19,29 +19,32 @@
             height: 100vh;
             width: 100vw;
         }
-        .board{
+
+        .board {
             height: 48rem;
             width: 48rem;
             display: flex;
             border: 10px solid brown;
             flex-wrap: wrap;
-        }
-        .white{
-            background-color: white ;
+            gap:0px;
         }
 
-        .black{
+        .white {
+            background-color: rgb(246, 241, 214);
+        }
+
+        .black {
             background-color: black;
         }
 
-        .box{
+        .box {
             width: 6rem;
             height: 6rem;
         }
-
     </style>
 </head>
-<body>  
+
+<body>
     <div class="board">
         <div class="white box"></div>
         <div class="black box"></div>
@@ -110,4 +113,5 @@
     </div>
 
 </body>
+
 </html>
