@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
         button{
-            height: 3rem;
-            width: 5rem;
+            height: 4rem;
+            width: 9rem;
             background-color: rgb(61, 158, 255);
+            color: white;
+            font-size: large;
+            border-radius: 1rem;
+            border: 1px solid rgb(0, 170, 255);
         }
 
     </style>
@@ -17,13 +26,11 @@
     <button id="box">Catch ME</button>
 </body>
 <script>
-    let max = 20
+    let max = 100
     let box = document.getElementById("box")
     box.addEventListener("mouseover",function () {
-        box.style.marginLeft = Math.floor(Math.random() * max)+"rem"
-        console.log(Math.floor(Math.random()))
-        box.style.marginTop = Math.floor(Math.random() * max)+"rem" 
+        box.style.marginLeft = Math.floor(Math.random() * max)+"vw"
+        box.style.marginTop = Math.floor(Math.random() * max)+"vh" 
     })
-
 </script>
 </html>
