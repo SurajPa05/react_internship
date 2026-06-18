@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 import './login.css';
 import Navbar from '../components/nav';
 
 function LoginPage() {
+    const navigate = useNavigate();
+
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
 
@@ -27,8 +30,9 @@ function LoginPage() {
             setSuccess("Login:sucessfull");
             localStorage.setItem("token",token);
             console.log(response)
+            navigate("/Home")
         }catch (err){
-            setError(err.response?.data?.message || "Login failed")
+            setError(err.response?.data?.message || "Login failed");
         }
     }
     

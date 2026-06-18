@@ -1,66 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Card from '../components/cards';
 import './home.css';
 
 function HomePage() {
-    const [products] = useState([
-        {
-            id: 1,
-            name: "Premium Headphones",
-            price: "$299.99",
-            description: "High-quality wireless headphones with noise cancellation",
-            category: "Electronics"
-        },
-        {
-            id: 2,
-            name: "Smart Watch",
-            price: "$399.99",
-            description: "Fitness tracking and health monitoring smartwatch",
-            category: "Electronics"
-        },
-        {
-            id: 3,
-            name: "Laptop Stand",
-            price: "$49.99",
-            description: "Ergonomic aluminum laptop stand for better posture",
-            category: "Accessories"
-        },
-        {
-            id: 4,
-            name: "Wireless Mouse",
-            price: "$79.99",
-            description: "Precision wireless mouse with ergonomic design",
-            category: "Accessories"
-        },
-        {
-            id: 5,
-            name: "Mechanical Keyboard",
-            price: "$149.99",
-            description: "RGB mechanical keyboard with premium switches",
-            category: "Accessories"
-        },
-        {
-            id: 6,
-            name: "Portable Charger",
-            price: "$59.99",
-            description: "20000mAh fast charging power bank",
-            category: "Electronics"
-        },
-        {
-            id: 7,
-            name: "USB-C Hub",
-            price: "$89.99",
-            description: "Multi-port USB-C hub with HDMI and card reader",
-            category: "Accessories"
-        },
-        {
-            id: 8,
-            name: "Webcam HD",
-            price: "$129.99",
-            description: "1080p HD webcam with auto focus and noise reduction",
-            category: "Electronics"
-        }
-    ]);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('https://sample-e-1.onrender.com/product/getproducts');
+                setProducts(response.data);
+                setError('');
+            } catch (err) {
+                setError('Failed to load products. Please try again later.');
+                console.error('Error fetching products:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     return (
         <>
@@ -91,26 +56,31 @@ function HomePage() {
                             <p>Explore our curated collection of premium tech products</p>
                         </div>
 
-                        <div className="products-grid">
-                            {products.map((product) => (
-                                <div key={product.id} className="product-card">
-                                    <div className="product-image">
-                                        <div className="product-placeholder">
-                                            <span className="product-icon">📦</span>
-                                        </div>
-                                        <span className="product-category">{product.category}</span>
-                                    </div>
-                                    <div className="product-info">
-                                        <h3 className="product-name">{product.name}</h3>
-                                        <p className="product-description">{product.description}</p>
-                                        <div className="product-footer">
-                                            <span className="product-price">{product.price}</span>
-                                            <button className="add-to-cart-btn">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        {loading && (
+                            <div className="loading-message">
+                                <p>Loading products...</p>
+                            </div>
+                        )}
+
+                        {error && (
+                            <div className="error-message-section">
+                                <p>{error}</p>
+                            </div>
+                        )}
+
+                        {!loading && !error && products.length === 0 && (
+                            <div className="no-products-message">
+                                <p>No products available at the moment.</p>
+                            </div>
+                        )}
+
+                        {!loading && !error && products.length > 0 && (
+                            <div className="products-grid">
+                                {products.map((product) => (
+                                    <Card key={product._id} product={product} />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </section>
 

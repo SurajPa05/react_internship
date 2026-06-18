@@ -23,12 +23,16 @@ function Navbar() {
                     <li className="nav-item">
                         <Link to="/contact" className="nav-link">Contact</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/addProduct" className="nav-link">Products</Link>
+                    </li>
                 </ul>
 
                 <div className="nav-auth">
                     <Link to="/login" className="nav-btn login-btn">Login</Link>
                     <Link to="/signup" className="nav-btn signup-btn">Sign Up</Link>
                 </div>
+
             </div>
         </nav>
     )
