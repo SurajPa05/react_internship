@@ -2,12 +2,27 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import {z} from 'zod'
 
 import './login.css';
 import Navbar from '../components/nav';
 
 function LoginPage() {
+    const loginSchema = z.object({
+        email: z
+        .string()
+        .min(1,"Email is Requered ")
+        .email("Invalid email"),
+
+        password: z
+        .string()
+        .min(1, "Password is required")
+        .max(100, "Password is too long"), 
+
+    })
+    
     const navigate = useNavigate();
+
 
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
@@ -19,20 +34,29 @@ function LoginPage() {
         setSuccess('')
         setError('')
         e.preventDefault('')
-        try{
-            const response  = await axios.post("https://sample-e-1.onrender.com/login",
-                {
-                    email,
-                    password
-                }
-            );
-            const {token} = response.data;
-            setSuccess("Login:sucessfull");
-            localStorage.setItem("token",token);
-            console.log(response)
-            navigate("/Home")
-        }catch (err){
-            setError(err.response?.data?.message || "Login failed");
+        const result = loginSchema.safeParse({
+            email,
+            password
+        })
+
+        if(!result.sucess){
+            setError(result.error?.issues[0]?.message || "Invalid format");
+        }else{
+            try{
+                const response  = await axios.post("https://sample-e-1.onrender.com/login",
+                    {
+                        email,
+                        password
+                    }
+                );
+                const {token} = response.data;
+                setSuccess("Login:sucessfull");
+                localStorage.setItem("token",token);
+                console.log(response)
+                navigate("/Home")
+            }catch (err){
+                setError(err.response?.data?.message || "Login failed");
+            }
         }
     }
     

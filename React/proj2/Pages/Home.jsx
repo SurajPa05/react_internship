@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { InfinitySpin } from 'react-loader-spinner';
 import Card from '../components/cards';
 import './home.css';
 
@@ -8,7 +9,7 @@ function HomePage() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-
+    
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -58,7 +59,7 @@ function HomePage() {
 
                         {loading && (
                             <div className="loading-message">
-                                <p>Loading products...</p>
+                                <InfinitySpin width="200" color="#000000" />
                             </div>
                         )}
 
